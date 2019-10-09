@@ -2,6 +2,29 @@
 
 [![devDependency Status](https://david-dm.org/zurb/foundation-emails-template/dev-status.svg)](https://david-dm.org/zurb/foundation-emails-template#info=devDependencies)
 
+## Important!
+
+For our Appway integration with Pardot, we introduced a modification to the Inky node module. At inky/lib/componentFactory.js the following code was added to make sure the <button> component was passing down the "pardot-region" attribute that is needed to enable editing in Pardot.
+
+```javascript
+// Optional pardot-region attribute for the <a> element
+var pardotRegion = "";
+if (element.attr("pardot-region") !== undefined) {
+  pardotRegion = " pardot-region ";
+}
+
+// If we have the href attribute we can create an anchor for the inner of the button;
+if (element.attr("href")) {
+  inner = format(
+    '<a %shref="%s"%s>%s</a>',
+    pardotRegion,
+    element.attr("href"),
+    target,
+    inner
+  );
+}
+```
+
 **Please open all issues with this template on the main [Foundation for Emails](http://github.com/zurb/foundation-emails/issues) repo.**
 
 This is the official starter project for [Foundation for Emails](http://foundation.zurb.com/emails), a framework for creating responsive HTML devices that work in any email client. It has a Gulp-powered build system with these features:
@@ -54,11 +77,11 @@ Run `npm start` to kick off the build process. A new browser tab will open with 
 
 Run `npm run build` to inline your CSS into your HTML along with the rest of the build process.
 
-Run `npm run litmus` to build as above, then submit to litmus for testing. *AWS S3 Account details required (config.json)*
+Run `npm run litmus` to build as above, then submit to litmus for testing. _AWS S3 Account details required (config.json)_
 
-Run `npm run mail` to build as above, then send to specified email address for testing. *SMTP server details required (config.json)*
+Run `npm run mail` to build as above, then send to specified email address for testing. _SMTP server details required (config.json)_
 
-Run `npm run zip` to build as above, then zip HTML and images for easy deployment to email marketing services. 
+Run `npm run zip` to build as above, then zip HTML and images for easy deployment to email marketing services.
 
 ### Speeding Up Your Build
 
@@ -78,7 +101,7 @@ Testing in Litmus requires the images to be hosted publicly. The provided gulp t
     "accessKeyId": "YOUR_ACCOUNT_KEY",
     "secretAccessKey": "YOUR_ACCOUNT_SECRET",
     "params": {
-        "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
+      "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
     },
     "url": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
   },
@@ -86,7 +109,20 @@ Testing in Litmus requires the images to be hosted publicly. The provided gulp t
     "username": "YOUR_LITMUS@EMAIL.com",
     "password": "YOUR_ACCOUNT_PASSWORD",
     "url": "https://YOUR_ACCOUNT.litmus.com",
-    "applications": ["ol2003","ol2007","ol2010","ol2011","ol2013","chromegmailnew","chromeyahoo","appmail9","iphone5s","ipad","android4","androidgmailapp"]
+    "applications": [
+      "ol2003",
+      "ol2007",
+      "ol2010",
+      "ol2011",
+      "ol2013",
+      "chromegmailnew",
+      "chromeyahoo",
+      "appmail9",
+      "iphone5s",
+      "ipad",
+      "android4",
+      "androidgmailapp"
+    ]
   }
 }
 ```
@@ -102,14 +138,12 @@ Similar to the Litmus tests, you can have the emails sent to a specified email a
     "accessKeyId": "YOUR_ACCOUNT_KEY",
     "secretAccessKey": "YOUR_ACCOUNT_SECRET",
     "params": {
-        "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
+      "Bucket": "elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
     },
     "url": "https://s3.amazonaws.com/elasticbeanstalk-us-east-1-THIS_IS_JUST_AN_EXAMPLE"
   },
   "mail": {
-    "to": [
-      "example@domain.com"
-    ],
+    "to": ["example@domain.com"],
     "from": "Company name <info@company.com",
     "smtp": {
       "auth": {
@@ -127,4 +161,3 @@ Similar to the Litmus tests, you can have the emails sent to a specified email a
 For a full list of Litmus' supported test clients(applications) see their [client list](https://litmus.com/emails/clients.xml).
 
 **Caution:** AWS Service Fees will result, however, are usually very low do to minimal traffic. Use at your own discretion.
-
