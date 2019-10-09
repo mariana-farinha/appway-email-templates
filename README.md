@@ -1,6 +1,4 @@
-# Foundation for Emails Template
-
-[![devDependency Status](https://david-dm.org/zurb/foundation-emails-template/dev-status.svg)](https://david-dm.org/zurb/foundation-emails-template#info=devDependencies)
+# Appway Email Templates
 
 ## Important!
 
@@ -24,6 +22,10 @@ if (element.attr("href")) {
   );
 }
 ```
+
+## Foundation for Emails Template
+
+[![devDependency Status](https://david-dm.org/zurb/foundation-emails-template/dev-status.svg)](https://david-dm.org/zurb/foundation-emails-template#info=devDependencies)
 
 **Please open all issues with this template on the main [Foundation for Emails](http://github.com/zurb/foundation-emails/issues) repo.**
 
