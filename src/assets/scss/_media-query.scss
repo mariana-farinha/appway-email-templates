@@ -3,5 +3,7 @@
   img.w-100 {
     width: 100% !important;
     height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
   }
 }
